@@ -74,19 +74,16 @@ class WeatherData extends Component {
 
 	getDataMatchingCityName = () => {
 		const { cityList, shortenedList, cityName } = this.state;
-		console.log('cityName', cityName, shortenedList, cityList);
 		if (!isEmpty(cityName) || cityName.length > 2)
 			this.setState({ shortenedList: cityList.filter(d => d.name.includes(cityName)) }, () => {
 				this.setState({shortenedListToBeShown: shortenedList.splice(0, 50)});
 			});
 		else
 			this.setState({ shortenedList: [] });
-		console.log('shortenedList: ', shortenedList);
 	}
 
 	handleSubmit = (event) => {
 		const { selectedCity } = this.state;
-		console.log('handleSubmit called')
 		event.preventDefault();
 		if (!isEmpty(selectedCity))
 			this.props.getWeatherData(selectedCity.id);
@@ -102,7 +99,6 @@ class WeatherData extends Component {
 	render() {
 		const { cityName, listToBeShown, shouldListBeVisible, loading, selectedCity, shortenedList, shortenedListToBeShown } = this.state;
 		const { weatherData } = this.props;
-		console.log('shortenedList', shortenedList, listToBeShown);
 		return (
 			<div className="App">
 				<form className="App-header-top-aligned" >
